@@ -25,15 +25,25 @@ app.get('/add', (req, res) => {
 
 // Add an examen to the db
 app.post('/add', (req, res) => {
- db.collection('inhaal').insertOne(req.body, (err, result) => {
-  if (err) return console.log(err)
-    res.redirect('/list')
- })
+  var query = { name: req.body.name, examen: req.body.examen, reden: req.body.reden }
+  db.collection('inhaal').find(query).toArray(function(err, result) {
+    if (result == ''){
+        console.log("student bestaat nog niet")
+        db.collection('inhaal').insertOne(req.body, (err, result) => {
+          if (err) return console.log(err)
+            res.redirect('/list')
+        })
+      }
+    else{
+      console.log("student bestaat al")
+      res.render('studentexists.ejs')
+    }
+  })
 })
 
 // Redirect to list
 app.get('/', (req, res) => {
-  res.redirect('/list')
+  res.redirect('/add')
 })
 
 // List all inhaalexamens

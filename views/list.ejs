@@ -12,9 +12,11 @@
   <% for(var i=0; i < inhaal.length; i++) {%>
     <li class='examen'>
       <span><b>Name : </b><%= inhaal[i].name %></span><br />
-      <span><b>Description : </b><%= inhaal[i].examen %></span><br />
-      <span><b>Price : </b><%= inhaal[i].date %></span><br />
+      <span><b>examen : </b><%= inhaal[i].examen %></span><br />
+      <span><b>reden : </b><%= inhaal[i].reden %></span><br />
+      <span><b>datum : </b><%= inhaal[i].date %></span><br />
     </li>
+    <br/><br/>
   <% } %>
   </ul>
 <br />
