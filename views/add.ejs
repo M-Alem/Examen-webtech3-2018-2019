@@ -7,13 +7,13 @@
 </head>
 <body>
 <div class='well'>
-  <h2>Add a product</h2>
+  <h2>Add inhaalexamen</h2>
   <br/><br/>
   <form action='/add' method='POST'>
    <table>
      <tr><td>Name Student: </td><td><input type='text' name='name'></td></tr>
-     <tr><td>examen : </td><td><input type='text' name='examen' size=100></td></tr>
-     <tr><td>Date : </td><td><%= moment().format('Do MMMM, YYYY'); %></td></tr>
+     <tr><td>examen : </td><td><input type='text' name='examen'></td></tr>
+     <tr><td>Date : </td><td><input type="text" name='date'></td></tr>
      <tr><td><button type='submit'>Add</button></td></tr>
    </table>
   </form>

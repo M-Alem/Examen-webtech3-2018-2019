@@ -18,8 +18,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(express.static('public'))
 
-var moment = require('moment');
-
 // Show the add examen form
 app.get('/add', (req, res) => {
   res.render('add.ejs', {})
@@ -28,9 +26,21 @@ app.get('/add', (req, res) => {
 // Add an examen to the db
 app.post('/add', (req, res) => {
  db.collection('inhaal').insertOne(req.body, (err, result) => {
-  res.render('index', { moment: moment });
   if (err) return console.log(err)
     res.redirect('/list')
+ })
+})
+
+// Redirect to list
+app.get('/', (req, res) => {
+  res.redirect('/list')
+})
+
+// List all inhaalexamens
+app.get('/list', (req, res) => {
+ db.collection('inhaal').find().toArray((err, result) => {
+   if (err) return console.log(err)
+   res.render('list.ejs', { inhaal: result })
  })
 })
 
