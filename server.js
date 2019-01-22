@@ -18,3 +18,19 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(express.static('public'))
 
+var moment = require('moment');
+
+// Show the add examen form
+app.get('/add', (req, res) => {
+  res.render('add.ejs', {})
+})
+
+// Add an examen to the db
+app.post('/add', (req, res) => {
+ db.collection('inhaal').insertOne(req.body, (err, result) => {
+  res.render('index', { moment: moment });
+  if (err) return console.log(err)
+    res.redirect('/list')
+ })
+})
+
