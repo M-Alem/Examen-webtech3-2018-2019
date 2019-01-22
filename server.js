@@ -52,5 +52,22 @@ app.get('/list', (req, res) => {
    if (err) return console.log(err)
    res.render('list.ejs', { inhaal: result })
  })
+
+ // Show the search form
+app.get('/search', (req, res) => {
+  res.render('search.ejs', { examen: '' })
+})
+
+// Find examens for student
+app.post('/search', (req, res) => {
+var query = { name: req.body.name }
+db.collection('inhaal').find(query).toArray(function(err, result) {
+  if (err) return console.log(err)
+  if (result == '')
+      res.render('search_not_found.ejs', {})
+  else
+      res.render('search_result.ejs', { inhaal: result })
+});
+})
 })
 

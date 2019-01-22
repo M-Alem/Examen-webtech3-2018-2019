@@ -2,22 +2,24 @@
 <html lang='en'>
 <head>
   <meta charset='UTF-8'>
-  <title>Products</title>
+  <title>Examens</title>
   <link rel='stylesheet' href='css/bootstrap.min.css'>
 </head>
 <body>
   <h2>Result</h2>
   <br/><br/>
-  <p class='product'>
-   <span><b>Name : </b><%= product.name %></span><br/>
-   <span><b>Description : </b><%= product.description %></span><br/>
-   <span><b>Price : </b><%= product.price %></span><br/>
-  </p>
+  <ul class='examen'>
+      <% for(var i=0; i < inhaal.length; i++) {%>
+        <li class='examen'>
+          <span><b>Name : </b><%= inhaal[i].name %></span><br />
+          <span><b>examen : </b><%= inhaal[i].examen %></span><br />
+          <span><b>reden : </b><%= inhaal[i].reden %></span><br />
+          <span><b>datum : </b><%= inhaal[i].date %></span><br />
+        </li>
+        <br/><br/>
+      <% } %>
+      </ul>
 
-  <form action='/delete' method='POST'>
-    <span><input type='hidden' name='name' value='<%=product.name%>'></span>
-    <span><button type='submit'>Delete</button></span>
-  </form>
-
+  <a href='/add'>Add examen</a>&nbsp;&nbsp;<a href='/search'>Search examen</a>
 </body>
 </html>
